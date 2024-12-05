@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Основна гілка, з якої відбувається деплой
+      - main # Основна гілка
 
 jobs:
   build-deploy:
@@ -15,7 +15,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18" # Вкажіть необхідну версію Node.js
+          node-version: "20.13.1" # Використання вашої версії Node.js
 
       - name: Install dependencies
         run: npm install
@@ -27,7 +27,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build # Шлях до згенерованих файлів
+          publish_dir: ./build # Шлях до згенерованих файлів або . для кореня
           branch: deploy
-          destination_dir: . # Деплоїти файли в корінь гілки deploy
-          clean: true # Очищає гілку перед новим деплоєм, щоб уникнути залишкових файлів
+          destination_dir: . # Розміщення файлів в корені
+          clean: true
